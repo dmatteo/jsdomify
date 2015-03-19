@@ -5,7 +5,7 @@ var expect = require('unexpected');
 var domify = require('../lib/domify');
 domify.create();
 
-describe('Test window clearing', function() {
+describe('domify API', function() {
 
   it('should append a child to the body', function() {
 
