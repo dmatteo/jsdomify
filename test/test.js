@@ -5,7 +5,7 @@ var expect = require('unexpected');
 var domify = require('../lib/domify');
 domify.create();
 
-describe.only('Test window clearing', function() {
+describe('Test window clearing', function() {
 
   it('should append a child to the body', function() {
 
@@ -26,8 +26,11 @@ describe.only('Test window clearing', function() {
   it('should have destroyed the DOM', function() {
 
     domify.destroy();
-    domify.create();
-    var par = document.createElement("P");
-    expect(document.body.innerHTML, 'to be empty');
+    var createElement = function() {
+      document.createElement("P")
+    };
+
+    expect(createElement, 'to throw exception');
   })
+
 });
