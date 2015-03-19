@@ -1,4 +1,4 @@
-domify.js
+JSdomify
 =========
 
 A ready to use DOM right at your finger tips for easy and fast testing
