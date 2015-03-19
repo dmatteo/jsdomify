@@ -1,0 +1,36 @@
+{
+  "name": "domify",
+  "version": "0.0.1",
+  "description": "Create a JSDom instance for browserless testing, exposing some handling methods",
+  "main": "lib/domify.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "jsdom": "~3.1.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.1",
+    "unexpected": "^6.4.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/podio/domify.git"
+  },
+  "keywords": [
+    "jsdom",
+    "dom",
+    "test",
+    "testing",
+    "mocha"
+  ],
+  "author": "Domenico Matteo <matteo.domenico@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/podio/domify/issues"
+  },
+  "homepage": "https://github.com/podio/domify"
+}
