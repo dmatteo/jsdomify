@@ -1,6 +1,6 @@
 {
   "name": "jsdomify",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Create a JSDom instance for browserless testing, exposing some handling methods",
   "main": "lib/domify.js",
   "directories": {
@@ -16,6 +16,9 @@
   "scripts": {
     "test": "mocha"
   },
+  "files": [
+    "lib/domify.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/podio/domify.git"
