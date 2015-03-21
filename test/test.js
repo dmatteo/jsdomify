@@ -56,4 +56,42 @@ describe('jsdomify API', function() {
 
   });
 
+
+  describe('Isolation test', function() {
+
+    before(function() {
+      jsdomify.create();
+    });
+
+    beforeEach(function() {
+      jsdomify.clear();
+    });
+
+    after(function() {
+      jsdomify.destroy();
+    });
+
+    it('should append a child to the body', function() {
+
+      var par = document.createElement("P");
+      var text = document.createTextNode("some text");
+      par.appendChild(text);
+      document.body.appendChild(par);
+      var parCount = document.getElementsByTagName("P");
+
+      expect(document.body.innerHTML, 'not to be empty');
+      expect(parCount.length, 'to be', 1);
+    });
+
+    it('should not find the previously appended child', function() {
+
+      var parCount = document.getElementsByTagName("P");
+
+      expect(document.body.innerHTML, 'to be empty');
+      expect(parCount.length, 'to be', 0);
+    });
+
+  });
+
+
 });
