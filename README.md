@@ -47,7 +47,7 @@ Clear the current instance and recreate a new one using the same DOM string (bas
 ### destroy()
 
 ```javascript
-jsdomify.clear()
+jsdomify.destroy()
 ```
 
 Close the window and destroy the document.
