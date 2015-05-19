@@ -2,7 +2,7 @@
 
 var expect = require('unexpected');
 
-var jsdomify = require('../lib/domify');
+var jsdomify = require('../lib/jsdomify');
 jsdomify.create();
 
 
