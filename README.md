@@ -53,11 +53,12 @@ jsdomify.destroy([clearRequireCache])
 Close the window and destroy the document.
 Can be used to isolate the tests and prevent leaking from one test suite to another.
 
-If `clearRequireCache === true` all the cached node require modules will be purged (defaults to `true`).
+If `clearRequireCache === true` all the cached node require modules will be purged (defaults to `true`).  
 This is needed in order to use ReactJS with MochaJS.
 
-React related issue: https://github.com/facebook/react/issues/4025
-MochaJS related issue: https://github.com/mochajs/mocha/issues/1722
+Related issues: 
+* [React](https://github.com/facebook/react/issues/4025 "React issue 4025")
+* [Mocha](https://github.com/mochajs/mocha/issues/1722 "Mocha issue 1722")
 
 ## Usage examples
 
