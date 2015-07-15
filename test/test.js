@@ -1,17 +1,15 @@
 "use strict";
 
-var expect = require('unexpected');
+import expect from 'unexpected';
 
-var jsdomify = require('../lib/jsdomify');
+import jsdomify from '../lib/jsdomify';
 jsdomify.create();
 
+describe('jsdomify API', () => {
 
+  describe('general behaviour', () => {
 
-describe('jsdomify API', function() {
-
-  describe('general behaviour', function() {
-
-    it('should append a child to the body', function() {
+    it('should append a child to the body', () => {
 
       var par = document.createElement("P");
       var text = document.createTextNode("some text");
@@ -21,32 +19,32 @@ describe('jsdomify API', function() {
       expect(document.body.innerHTML, 'not to be empty');
     });
 
-    it('should have cleared the window from any child', function() {
+    it('should have cleared the window from any child', () => {
 
       jsdomify.clear();
       expect(document.body.innerHTML, 'to be empty');
     });
 
-    it('should have destroyed the DOM', function() {
+    it('should have destroyed the DOM', () => {
 
       jsdomify.destroy();
-      var createElement = function() {
+      let createElement = () => {
         document.createElement("P")
       };
 
       expect(createElement, 'to throw exception');
     });
 
-    it('should keep the DOM string after clear()', function() {
+    it('should keep the DOM string after clear()', () => {
 
       jsdomify.create('<p>par1</p><p>par2</p>');
 
-      var par = document.createElement("P");
-      var text = document.createTextNode("par3");
+      let par = document.createElement("P");
+      let text = document.createTextNode("par3");
       par.appendChild(text);
       document.body.appendChild(par);
 
-      var parCount = document.getElementsByTagName("P");
+      let parCount = document.getElementsByTagName("P");
       expect(parCount.length, 'to be', 3);
 
       jsdomify.clear();
@@ -57,35 +55,35 @@ describe('jsdomify API', function() {
   });
 
 
-  describe('Isolation test', function() {
+  describe('Isolation test', () => {
 
-    before(function() {
+    before(() => {
       jsdomify.create();
     });
 
-    beforeEach(function() {
+    beforeEach(() => {
       jsdomify.clear();
     });
 
-    after(function() {
+    after(() => {
       jsdomify.destroy();
     });
 
-    it('should append a child to the body', function() {
+    it('should append a child to the body', () => {
 
-      var par = document.createElement("P");
-      var text = document.createTextNode("some text");
+      let par = document.createElement("P");
+      let text = document.createTextNode("some text");
       par.appendChild(text);
       document.body.appendChild(par);
-      var parCount = document.getElementsByTagName("P");
+      let parCount = document.getElementsByTagName("P");
 
       expect(document.body.innerHTML, 'not to be empty');
       expect(parCount.length, 'to be', 1);
     });
 
-    it('should not find the previously appended child', function() {
+    it('should not find the previously appended child', () => {
 
-      var parCount = document.getElementsByTagName("P");
+      let parCount = document.getElementsByTagName("P");
 
       expect(document.body.innerHTML, 'to be empty');
       expect(parCount.length, 'to be', 0);
