@@ -23,9 +23,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-"use strict";
-
-module.exports = function (window) {
+module.exports = function(window) {
 
     if (typeof window.Element === "undefined" || "classList" in window.document.documentElement) return;
 
@@ -38,25 +36,25 @@ module.exports = function (window) {
         this.el = el;
         // The className needs to be trimmed and split on whitespace
         // to retrieve a list of classes.
-        var classes = el.className.replace(/^\s+|\s+$/g, "").split(/\s+/);
+        var classes = el.className.replace(/^\s+|\s+$/g, '').split(/\s+/);
         for (var i = 0; i < classes.length; i++) {
             push.call(this, classes[i]);
         }
     };
 
     DOMTokenList.prototype = {
-        add: function add(token) {
+        add: function(token) {
             if (this.contains(token)) return;
             push.call(this, token);
             this.el.className = this.toString();
         },
-        contains: function contains(token) {
+        contains: function(token) {
             return this.el.className.indexOf(token) != -1;
         },
-        item: function item(index) {
+        item: function(index) {
             return this[index] || null;
         },
-        remove: function remove(token) {
+        remove: function(token) {
             if (!this.contains(token)) return;
             for (var i = 0; i < this.length; i++) {
                 if (this[i] == token) break;
@@ -64,10 +62,10 @@ module.exports = function (window) {
             splice.call(this, i, 1);
             this.el.className = this.toString();
         },
-        toString: function toString() {
-            return join.call(this, " ");
+        toString: function() {
+            return join.call(this, ' ');
         },
-        toggle: function toggle(token) {
+        toggle: function(token) {
             if (!this.contains(token)) {
                 this.add(token);
             } else {
@@ -90,7 +88,8 @@ module.exports = function (window) {
         }
     }
 
-    defineElementGetter(window.Element.prototype, "classList", function () {
+    defineElementGetter(window.Element.prototype, 'classList', function() {
         return new DOMTokenList(this);
     });
+
 };

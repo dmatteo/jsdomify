@@ -1,13 +1,11 @@
-'use strict';
 
-var _jsdom = require('jsdom');
+import {jsdom} from 'jsdom';
+let actualDOM;
 
-var actualDOM = undefined;
-
-var create = function create(domString) {
+let create = (domString) => {
 
   actualDOM = domString || '';
-  global.document = (0, _jsdom.jsdom)(actualDOM);
+  global.document = jsdom(actualDOM);
   global.window = document.defaultView;
   global.Element = window.Element;
   global.navigator = {
@@ -18,14 +16,14 @@ var create = function create(domString) {
   require('./classList')(global.window);
 };
 
-var clear = function clear() {
+let clear = () => {
   destroy();
   create(actualDOM);
 };
 
-var destroy = function destroy(clearRequireCache) {
+let destroy = (clearRequireCache) => {
 
-  if (typeof clearRequireCache === 'undefined') {
+  if(typeof clearRequireCache === 'undefined') {
     clearRequireCache = true;
   }
 
@@ -33,12 +31,13 @@ var destroy = function destroy(clearRequireCache) {
   delete global.document;
 
   if (clearRequireCache) {
-    Object.keys(require.cache).forEach(function (key) {
+    Object.keys(require.cache).forEach((key) => {
       if (key.indexOf('require') !== -1) {
         delete require.cache[key];
       }
     });
   }
+
 };
 
 module.exports = {

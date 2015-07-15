@@ -2,7 +2,7 @@
 
 import expect from 'unexpected';
 
-import jsdomify from '../lib/jsdomify';
+import jsdomify from '../src/jsdomify';
 jsdomify.create();
 
 describe('jsdomify API', () => {
