@@ -1,5 +1,5 @@
-
 # jsdomify
+[![Build Status](https://travis-ci.org/podio/jsdomify.svg)](https://travis-ci.org/podio/jsdomify)
 
 A ready to use DOM right at your finger tips for easy and fast testing without any browser in the Node environment
 (with [mocha](http://mochajs.org/), for example)
