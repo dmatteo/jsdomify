@@ -13,7 +13,7 @@ let create = (domString) => {
   };
 
   // shim document.classList
-  require('./classList')(global.window);
+  require('./polyfills/classList')(global.window);
 };
 
 let clear = () => {
