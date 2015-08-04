@@ -16,13 +16,15 @@ npm install jsdomify
 You can create a new jsdom instance simply with 
 
 ```javascript
-var jsdomify = require('jsdomify').create()
+var jsdomify = require('jsdomify').create();
 ```
 
 Or you can provide a valid HTML string that will be used as your DOM
 
 ```javascript
-var jsdomify = require('jsdomify').create('<!DOCTYPE html><html><head></head><body>hello</body></html>')
+var jsdomify = require('jsdomify').create(
+  '<!DOCTYPE html><html><head></head><body>hello</body></html>'
+);
 ```
 
 ## Methods
@@ -32,7 +34,7 @@ var jsdomify = require('jsdomify').create('<!DOCTYPE html><html><head></head><bo
 ### create(domString)
 
 ```javascript
-jsdomify.create()
+jsdomify.create();
 ```
 
 Create a new DOM instance (with or withouth the optional DOM string).
@@ -40,7 +42,7 @@ Create a new DOM instance (with or withouth the optional DOM string).
 ### clear()
 
 ```javascript
-jsdomify.clear()
+jsdomify.clear();
 ```
 
 Clear the current instance and recreate a new one using the same DOM string (basically clearing up the DOM).
@@ -48,7 +50,7 @@ Clear the current instance and recreate a new one using the same DOM string (bas
 ### destroy()
 
 ```javascript
-jsdomify.destroy([clearRequireCache])
+jsdomify.destroy([clearRequireCache]);
 ```
 
 Close the window and destroy the document.
@@ -60,6 +62,17 @@ This is needed in order to use ReactJS with MochaJS.
 Related issues: 
 * [React](https://github.com/facebook/react/issues/4025 "React issue 4025")
 * [Mocha](https://github.com/mochajs/mocha/issues/1722 "Mocha issue 1722")
+
+
+### getDocument()
+
+```javascript
+var documentRef = jsdomify.getDocument();
+var elm = documentRef.getElementById('whatever');
+```
+
+Get a reference to the document that has been created as a `global`.  
+Useful when running with strict linting that doesn't allow globals but still want to test things on the document itself.
 
 ## Usage examples
 
