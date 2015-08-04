@@ -1,6 +1,7 @@
 
 import {jsdom} from 'jsdom';
 let actualDOM;
+let documentRef;
 
 let create = (domString) => {
 
@@ -14,6 +15,8 @@ let create = (domString) => {
 
   // shim document.classList
   require('./polyfills/classList')(global.window);
+
+  documentRef = document;
 };
 
 let clear = () => {
@@ -29,6 +32,7 @@ let destroy = (clearRequireCache) => {
 
   window.close();
   delete global.document;
+  documentRef = undefined;
 
   if (clearRequireCache) {
     Object.keys(require.cache).forEach((key) => {
@@ -40,8 +44,18 @@ let destroy = (clearRequireCache) => {
 
 };
 
+let getDocument = () => {
+  if (typeof documentRef === 'undefined') {
+    throw new Error(`document is undefined\nTry calling jsdomify.create() before requesting it\n`);
+  }
+
+  return documentRef;
+};
+
+
 module.exports = {
   create: create,
   clear: clear,
-  destroy: destroy
+  destroy: destroy,
+  getDocument: getDocument
 };

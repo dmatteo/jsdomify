@@ -52,6 +52,20 @@ describe('jsdomify API', () => {
       expect(parCount.length, 'to be', 2);
     });
 
+    it('should get a reference to the document when using .getDocument', () => {
+      jsdomify.create('<div id="test-document"></div>');
+      var docReference = jsdomify.getDocument();
+
+      expect(docReference.getElementById('test-document'), 'to be defined');
+    });
+
+    it('should throw if trying to access the document after .destroy', () => {
+      jsdomify.create('<div id="test-document"></div>');
+      jsdomify.destroy();
+
+      expect(jsdomify.getDocument, 'to throw');
+    });
+
   });
 
 
