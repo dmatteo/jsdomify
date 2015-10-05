@@ -1,6 +1,6 @@
 {
   "name": "jsdomify",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Create a JSDom instance for browserless testing, exposing some handling methods",
   "main": "lib/jsdomify.js",
   "directories": {
