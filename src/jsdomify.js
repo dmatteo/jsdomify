@@ -32,6 +32,10 @@ let destroy = (clearRequireCache) => {
   }
 
   window.close();
+  delete global.window;
+  delete global.location;
+  delete global.Element;
+  delete global.navigator;
   delete global.document;
   documentRef = undefined;
 
