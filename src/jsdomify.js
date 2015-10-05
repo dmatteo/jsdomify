@@ -7,7 +7,7 @@ let create = (domString) => {
 
   actualDOM = domString || '';
   global.document = jsdom(actualDOM);
-  global.window = document.defaultView;
+  global.window = document.parentWindow;
   global.Element = window.Element;
   global.navigator = {
     userAgent: 'node.js'
