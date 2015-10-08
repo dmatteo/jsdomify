@@ -7,14 +7,14 @@
     "test": "test"
   },
   "dependencies": {
-    "jsdom": "3.1.2"
+    "jsdom": "6.5.1"
   },
   "devDependencies": {
-    "babel": "5.6.23",
-    "coveralls": "2.11.2",
-    "istanbul": "0.3.17",
-    "mocha": "2.2.5",
-    "unexpected": "9.2.1"
+    "babel": "5.8.23",
+    "coveralls": "2.11.4",
+    "istanbul": "0.3.22",
+    "mocha": "2.3.3",
+    "unexpected": "9.16.1"
   },
   "scripts": {
     "test": "mocha --compilers js:babel/register",
