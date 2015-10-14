@@ -58,7 +58,7 @@ let getDocument = () => {
 };
 
 
-module.exports = {
+export default {
   create: create,
   clear: clear,
   destroy: destroy,
