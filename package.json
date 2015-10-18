@@ -12,7 +12,7 @@
   "devDependencies": {
     "babel": "5.8.23",
     "coveralls": "2.11.4",
-    "istanbul": "0.3.22",
+    "istanbul": "0.4.0",
     "mocha": "2.3.3",
     "unexpected": "10.0.1"
   },
