@@ -4,7 +4,6 @@ cache:
   directories:
   - node_modules
 node_js:
-  - "iojs"
   - "4"
 script: "npm run-script travis"
 after_success: "<coverage/lcov.info ./node_modules/coveralls/bin/coveralls.js"
