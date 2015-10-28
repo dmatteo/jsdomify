@@ -7,7 +7,7 @@ let create = (domString) => {
 
   actualDOM = domString || '';
   global.document = jsdom(actualDOM);
-  global.window = document.parentWindow;
+  global.window = document.defaultView;
   global.location = window.location;
   global.Element = window.Element;
   global.navigator = {
@@ -58,7 +58,7 @@ let getDocument = () => {
 };
 
 
-module.exports = {
+export default {
   create: create,
   clear: clear,
   destroy: destroy,

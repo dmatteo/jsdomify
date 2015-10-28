@@ -5,10 +5,13 @@
 A ready to use DOM right at your finger tips for easy and fast testing without any browser in the Node environment
 (with [mocha](http://mochajs.org/), for example)
 
+**requires Node v4.x or io.js**  
+For `node 0.1x` compatibility please see [jsdomify-compat](https://github.com/podio/jsdomify-compat)
+
 ## Getting started
 
 ```
-npm install jsdomify
+npm install --save-dev jsdomify
 ```
 
 ## Usage
@@ -16,13 +19,38 @@ npm install jsdomify
 You can create a new jsdom instance simply with 
 
 ```javascript
-var jsdomify = require('jsdomify').create();
+import jsdomify from 'jsdomify';
+jsdomify.create();
 ```
 
-Or you can provide a valid HTML string that will be used as your DOM
+If you're using ReactJS, you have to be careful of requiring it **after** you've created a DOM instance, like:
 
 ```javascript
-var jsdomify = require('jsdomify').create(
+import jsdomify from 'jsdomify';
+let React;
+
+describe('ReactElement', () => {
+  
+  before(() => {
+    jsdomify.create();
+    React = require('react');
+  });
+  
+  after(() => {
+    jsdomify.destroy();
+  });
+  
+  it('should test something', () => {
+    // your test case  
+  });
+  
+});
+```
+
+You can even provide an HTML string that will be used as your DOM
+
+```javascript
+jsdomify.create(
   '<!DOCTYPE html><html><head></head><body>hello</body></html>'
 );
 ```
@@ -37,7 +65,7 @@ var jsdomify = require('jsdomify').create(
 jsdomify.create();
 ```
 
-Create a new DOM instance (with or withouth the optional DOM string).
+Create a new DOM instance (with or without an optional DOM string).
 
 ### clear()
 
@@ -45,7 +73,7 @@ Create a new DOM instance (with or withouth the optional DOM string).
 jsdomify.clear();
 ```
 
-Clear the current instance and recreate a new one using the same DOM string (basically clearing up the DOM).
+Clear the current instance and recreate a new one using the same DOM string (if any).
 
 ### destroy()
 
@@ -53,11 +81,11 @@ Clear the current instance and recreate a new one using the same DOM string (bas
 jsdomify.destroy([clearRequireCache]);
 ```
 
-Close the window and destroy the document.
+Close the window, destroy the document and all the other *leaked* globals.
 Can be used to isolate the tests and prevent leaking from one test suite to another.
 
-If `clearRequireCache === true` all the cached node require modules will be purged (defaults to `true`).  
-This is needed in order to use ReactJS with MochaJS.
+If `clearRequireCache === true` all the cached `node-require` modules will be purged (defaults to `true`).  
+This is needed in order to use ReactJS with MochaJS and prevent caching issues from one test to another.
 
 Related issues: 
 * [React](https://github.com/facebook/react/issues/4025 "React issue 4025")
@@ -67,12 +95,12 @@ Related issues:
 ### getDocument()
 
 ```javascript
-var documentRef = jsdomify.getDocument();
-var elm = documentRef.getElementById('whatever');
+const documentRef = jsdomify.getDocument();
+const elm = documentRef.getElementById('whatever');
 ```
 
 Get a reference to the document that has been created as a `global`.  
-Useful when running with strict linting that doesn't allow globals but still want to test things on the document itself.
+Useful when running with strict linting that doesn't allow globals but you still want to test directly on the document.
 
 ## Usage examples
 
@@ -95,11 +123,11 @@ describe('Isolation test', function() {
 
   it('should append a child to the body', function() {
 
-    var par = document.createElement("P");
-    var text = document.createTextNode("some text");
+    let par = document.createElement("P");
+    const text = document.createTextNode("some text");
     par.appendChild(text);
     document.body.appendChild(par);
-    var parCount = document.getElementsByTagName("P");
+    const parCount = document.getElementsByTagName("P");
 
     expect(document.body.innerHTML, 'not to be empty');
     expect(parCount.length, 'to be', 1);
@@ -107,7 +135,7 @@ describe('Isolation test', function() {
 
   it('should not find the previously appended child', function() {
 
-    var parCount = document.getElementsByTagName("P");
+    const parCount = document.getElementsByTagName("P");
 
     expect(document.body.innerHTML, 'to be empty');
     expect(parCount.length, 'to be', 0);
