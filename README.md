@@ -5,7 +5,7 @@
 A ready to use DOM right at your finger tips for easy and fast testing without any browser in the Node environment
 (with [mocha](http://mochajs.org/), for example)
 
-**requires Node v4.x or io.js**  
+**as of jsdom 7.x, jsdomify requires Node v4.x**  
 For `node 0.1x` compatibility please see [jsdomify-compat](https://github.com/podio/jsdomify-compat)
 
 ## Getting started
