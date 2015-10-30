@@ -14,9 +14,6 @@ let create = (domString) => {
     userAgent: 'node.js'
   };
 
-  // shim document.classList
-  require('./polyfills/classList')(global.window);
-
   documentRef = document;
 };
 
