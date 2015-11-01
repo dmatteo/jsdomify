@@ -10,7 +10,7 @@
     "jsdom": "7.0.0"
   },
   "devDependencies": {
-    "babel": "5.8.29",
+    "babel": "6.0.15",
     "coveralls": "2.11.4",
     "istanbul": "0.4.0",
     "mocha": "2.3.3",
