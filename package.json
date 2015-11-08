@@ -14,7 +14,7 @@
     "coveralls": "2.11.4",
     "istanbul": "0.4.0",
     "mocha": "2.3.3",
-    "unexpected": "10.0.2"
+    "unexpected": "10.1.0"
   },
   "scripts": {
     "test": "mocha --compilers js:babel/register",
