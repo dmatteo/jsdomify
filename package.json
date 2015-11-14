@@ -21,15 +21,14 @@
     "unexpected": "10.1.0"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel/register",
+    "test": "mocha --compilers js:babel-core/register",
     "compile": "babel -d lib/ src/",
     "prepublish": "npm run compile",
     "travis": "npm run coverage",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -x src/polyfills/* -- -R spec --compilers js:babel/register"
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -x src/polyfills/* -- -R spec --compilers js:babel-core/register"
   },
   "files": [
-    "lib/jsdomify.js",
-    "lib/polyfills/classList.js"
+    "lib/jsdomify.js"
   ],
   "repository": {
     "type": "git",
