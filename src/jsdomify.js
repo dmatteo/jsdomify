@@ -10,6 +10,7 @@ let create = (domString) => {
   global.window = document.defaultView;
   global.location = window.location;
   global.Element = window.Element;
+  global.XMLHttpRequest = window.XMLHttpRequest;
   global.navigator = {
     userAgent: 'node.js'
   };
