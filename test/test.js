@@ -66,11 +66,16 @@ describe('jsdomify API', () => {
       expect(jsdomify.getDocument, 'to throw');
     });
 
-    it('should set the global XMLHttpRequest using the windows XMLHttpRequest', () => {
+    it('should set the global XMLHttpRequest using the windows XMLHttpRequest in create', () => {
       jsdomify.create();
       expect(global.XMLHttpRequest, 'to equal', window.XMLHttpRequest);
     });
 
+    it('should remove the global XMLHttpRequest in destroy', () => {
+      jsdomify.create();
+      jsdomify.destroy();
+      expect(global.XMLHttpRequest, 'to be undefined');
+    });
   });
 
 

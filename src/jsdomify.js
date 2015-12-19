@@ -35,6 +35,7 @@ let destroy = (clearRequireCache) => {
   delete global.Element;
   delete global.navigator;
   delete global.document;
+  delete global.XMLHttpRequest;
   documentRef = undefined;
 
   if (clearRequireCache) {
