@@ -82,7 +82,6 @@ describe('jsdomify API', () => {
 
   });
 
-
   describe('Isolation test', () => {
 
     before(() => {
@@ -119,5 +118,62 @@ describe('jsdomify API', () => {
 
   });
 
+  describe('React.js tests', () => {
+
+    let getInstance, React, ReactDOM, TestUtils;
+
+    before(() => {
+      jsdomify.create();
+
+      React = require('react');
+      ReactDOM = require('react-dom');
+      TestUtils = require('react-addons-test-utils');
+
+      class ReactComponent extends React.Component {
+        constructor(props) {
+          super(props);
+          this.displayName = 'ReactComponent';
+          this.state = {
+            message: props.message || ''
+          };
+        }
+
+        render() {
+          return (
+            <div>
+              <p onClick={this.handleOnClick.bind(this)} ref="message">{this.state.message}</p>
+            </div>
+          );
+        }
+
+        handleOnClick() {
+          this.setState({message: 'Burritos!'});
+        }
+      }
+
+      getInstance = (props) => {
+        return TestUtils.renderIntoDocument(<ReactComponent {...props} />);
+      }
+    });
+
+    after(() => {
+      jsdomify.destroy();
+    });
+
+    it('should render a React component using jsdomify', () => {
+      const instance = getInstance({message: 'Bananas!'});
+      const messageNode = ReactDOM.findDOMNode(instance.refs.message);
+      expect(messageNode.textContent, 'to be', 'Bananas!');
+    });
+
+    it('should update a React component on click', () => {
+      const instance = getInstance({message: 'Bananas!'});
+      const messageNode = ReactDOM.findDOMNode(instance.refs.message);
+      expect(messageNode.textContent, 'to be', 'Bananas!');
+
+      TestUtils.Simulate.click(messageNode);
+      expect(messageNode.textContent, 'to be', 'Burritos!');
+    });
+  })
 
 });
