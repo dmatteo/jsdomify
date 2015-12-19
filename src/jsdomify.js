@@ -2,14 +2,20 @@
 import {jsdom} from 'jsdom';
 let actualDOM;
 let documentRef;
+let exposedProperties = ['window', 'navigator', 'document'];
 
 let create = (domString) => {
 
   actualDOM = domString || '';
   global.document = jsdom(actualDOM);
   global.window = document.defaultView;
-  global.location = window.location;
-  global.Element = window.Element;
+  Object.keys(document.defaultView).forEach((property) => {
+    if (typeof global[property] === 'undefined') {
+      exposedProperties.push(property);
+      global[property] = document.defaultView[property];
+    }
+  });
+
   global.navigator = {
     userAgent: 'node.js'
   };
@@ -28,13 +34,13 @@ let destroy = (clearRequireCache) => {
     clearRequireCache = true;
   }
 
-  window.close();
-  delete global.window;
-  delete global.location;
-  delete global.Element;
-  delete global.navigator;
-  delete global.document;
+  if (typeof global.window !== 'undefined') {
+    global.window.close();
+  }
   documentRef = undefined;
+  exposedProperties.map((property) => {
+    delete global[property];
+  });
 
   if (clearRequireCache) {
     Object.keys(require.cache).forEach((key) => {

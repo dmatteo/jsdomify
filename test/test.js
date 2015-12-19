@@ -3,11 +3,25 @@
 import expect from 'unexpected';
 
 import jsdomify from '../src/jsdomify';
-jsdomify.create();
 
 describe('jsdomify API', () => {
 
-  describe('general behaviour', () => {
+  describe('General behaviour', () => {
+
+    before(() => {
+      jsdomify.create();
+    });
+
+    after(() => {
+      jsdomify.destroy();
+    });
+
+    it('should expose all jsdom properties to Node.js global', () => {
+      const jsdomInstance = require('jsdom').jsdom();
+      Object.keys(jsdomInstance.defaultView).forEach((property) => {
+        expect(global[property], 'to be defined');
+      });
+    });
 
     it('should append a child to the body', () => {
 
