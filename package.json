@@ -20,18 +20,24 @@
     "isparta": "4.0.0",
     "istanbul": "0.4.1",
     "mocha": "2.3.4",
+    "pre-commit": "1.1.2",
     "react": "0.14.3",
     "react-addons-test-utils": "0.14.3",
     "react-dom": "0.14.3",
     "unexpected": "10.4.0"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register",
     "compile": "babel src/ --out-dir lib/",
+    "coverage": "babel-node isparta cover --report cobertura --report html node_modules/.bin/_mocha --report lcovonly",
+    "lint:all": "eslint src/",
+    "lint:cached": "LIST=`git diff --cached --name-only | grep \\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
     "prepublish": "npm run compile",
-    "travis": "npm run coverage",
-    "coverage": "node_modules/.bin/babel-node node_modules/.bin/isparta cover --report cobertura --report html node_modules/.bin/_mocha --report lcovonly"
+    "test": "mocha --compilers js:babel-core/register",
+    "travis": "npm run lint:all && npm run coverage"
   },
+  "pre-commit": [
+    "lint:cached"
+  ],
   "files": [
     "lib/jsdomify.js"
   ],
