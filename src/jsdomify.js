@@ -1,11 +1,10 @@
 
-import {jsdom} from 'jsdom';
+import { jsdom } from 'jsdom';
 let actualDOM;
 let documentRef;
-let exposedProperties = ['window', 'navigator', 'document'];
+const exposedProperties = ['window', 'navigator', 'document'];
 
-let create = (domString) => {
-
+const create = (domString) => {
   actualDOM = domString || '';
   global.document = jsdom(actualDOM);
   global.window = document.defaultView;
@@ -23,16 +22,10 @@ let create = (domString) => {
   documentRef = document;
 };
 
-let clear = () => {
-  destroy();
-  create(actualDOM);
-};
-
-let destroy = (clearRequireCache) => {
-
-  if(typeof clearRequireCache === 'undefined') {
-    clearRequireCache = true;
-  }
+const destroy = (clearRequireCache) => {
+  const clearCache = typeof clearRequireCache === 'undefined'
+    ? true
+    : clearRequireCache;
 
   if (typeof global.window !== 'undefined') {
     global.window.close();
@@ -42,17 +35,21 @@ let destroy = (clearRequireCache) => {
     delete global[property];
   });
 
-  if (clearRequireCache) {
+  if (clearCache) {
     Object.keys(require.cache).forEach((key) => {
       if (key.indexOf('require') !== -1) {
         delete require.cache[key];
       }
     });
   }
-
 };
 
-let getDocument = () => {
+const clear = () => {
+  destroy();
+  create(actualDOM);
+};
+
+const getDocument = () => {
   if (typeof documentRef === 'undefined') {
     throw new Error(`document is undefined\nTry calling jsdomify.create() before requesting it\n`);
   }
@@ -62,8 +59,8 @@ let getDocument = () => {
 
 
 export default {
-  create: create,
-  clear: clear,
-  destroy: destroy,
-  getDocument: getDocument
+  create,
+  clear,
+  destroy,
+  getDocument
 };
