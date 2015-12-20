@@ -28,7 +28,7 @@
   },
   "scripts": {
     "compile": "babel src/ --out-dir lib/",
-    "coverage": "babel-node isparta cover --report cobertura --report html node_modules/.bin/_mocha --report lcovonly",
+    "coverage": "babel-node node_modules/.bin/isparta cover --report cobertura --report html node_modules/.bin/_mocha --report lcovonly",
     "lint:all": "eslint src/",
     "lint:cached": "LIST=`git diff --cached --name-only | grep \\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
     "prepublish": "npm run compile",
