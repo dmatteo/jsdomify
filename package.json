@@ -24,7 +24,7 @@
     "react": "0.14.3",
     "react-addons-test-utils": "0.14.3",
     "react-dom": "0.14.3",
-    "unexpected": "10.4.0"
+    "unexpected": "10.5.0"
   },
   "scripts": {
     "compile": "babel src/ --out-dir lib/",
