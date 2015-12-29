@@ -21,7 +21,7 @@
     "istanbul": "0.4.1",
     "mocha": "2.3.4",
     "pre-commit": "1.1.2",
-    "react": "0.14.3",
+    "react": "0.14.4",
     "react-addons-test-utils": "0.14.3",
     "react-dom": "0.14.3",
     "unexpected": "10.5.0"
