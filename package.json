@@ -18,7 +18,7 @@
     "eslint-config-airbnb": "2.1.1",
     "eslint-plugin-react": "3.13.1",
     "isparta": "4.0.0",
-    "istanbul": "0.4.1",
+    "istanbul": "0.4.2",
     "mocha": "2.3.4",
     "pre-commit": "1.1.2",
     "react": "0.14.3",
