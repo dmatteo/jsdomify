@@ -16,7 +16,7 @@
     "coveralls": "2.11.6",
     "eslint": "1.10.3",
     "eslint-config-airbnb": "3.1.0",
-    "eslint-plugin-react": "3.15.0",
+    "eslint-plugin-react": "3.16.0",
     "isparta": "4.0.0",
     "istanbul": "0.4.2",
     "mocha": "2.3.4",
