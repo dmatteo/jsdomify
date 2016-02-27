@@ -1,6 +1,6 @@
 # jsdomify
-[![Build Status](https://travis-ci.org/podio/jsdomify.svg)](https://travis-ci.org/podio/jsdomify)
-[![Coverage Status](https://coveralls.io/repos/podio/jsdomify/badge.svg?branch=master&service=github)](https://coveralls.io/github/podio/jsdomify?branch=master)
+[![Build Status](https://travis-ci.org/dmatteo/jsdomify.svg?branch=master)](https://travis-ci.org/dmatteo/jsdomify)
+[![Coverage Status](https://coveralls.io/repos/github/dmatteo/jsdomify/badge.svg?branch=master)](https://coveralls.io/github/dmatteo/jsdomify?branch=master)
 
 A ready to use DOM right at your finger tips for easy and fast testing without any browser in the Node environment
 (with [mocha](http://mochajs.org/), for example)
