@@ -44,7 +44,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/podio/jsdomify.git"
+    "url": "git://github.com/dmatteo/jsdomify.git"
   },
   "keywords": [
     "jsdom",
@@ -57,7 +57,7 @@
   "author": "Domenico Matteo <matteo.domenico@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/podio/jsdomify/issues"
+    "url": "https://github.com/dmatteo/jsdomify/issues"
   },
-  "homepage": "https://github.com/podio/jsdomify"
+  "homepage": "https://github.com/dmatteo/jsdomify"
 }
