@@ -31,7 +31,7 @@ const destroy = (clearRequireCache) => {
     global.window.close();
   }
   documentRef = undefined;
-  exposedProperties.map((property) => {
+  exposedProperties.forEach((property) => {
     delete global[property];
   });
 
