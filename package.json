@@ -16,7 +16,7 @@
     "babel-preset-react": "6.5.0",
     "coveralls": "2.11.8",
     "eslint": "2.2.0",
-    "eslint-config-airbnb": "6.0.2",
+    "eslint-config-airbnb": "6.2.0",
     "eslint-plugin-react": "4.1.0",
     "isparta": "4.0.0",
     "istanbul": "0.4.2",
