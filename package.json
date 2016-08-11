@@ -7,7 +7,7 @@
     "test": "test"
   },
   "dependencies": {
-    "jsdom": "8.2.0"
+    "jsdom": "9.4.2"
   },
   "devDependencies": {
     "babel-cli": "6.6.5",
