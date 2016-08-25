@@ -1,5 +1,5 @@
-
 import { jsdom } from 'jsdom';
+
 let actualDOM;
 let documentRef;
 const exposedProperties = ['window', 'navigator', 'document'];
@@ -7,11 +7,11 @@ const exposedProperties = ['window', 'navigator', 'document'];
 const create = (domString) => {
   actualDOM = domString || '';
   global.document = jsdom(actualDOM);
-  global.window = document.defaultView;
-  Object.keys(document.defaultView).forEach((property) => {
+  global.window = global.document.defaultView;
+  Object.keys(global.document.defaultView).forEach((property) => {
     if (typeof global[property] === 'undefined') {
       exposedProperties.push(property);
-      global[property] = document.defaultView[property];
+      global[property] = global.document.defaultView[property];
     }
   });
 
@@ -19,7 +19,7 @@ const create = (domString) => {
     userAgent: 'node.js'
   };
 
-  documentRef = document;
+  documentRef = global.document;
 };
 
 const destroy = (clearRequireCache) => {
