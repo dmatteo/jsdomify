@@ -4,9 +4,9 @@ let actualDOM;
 let documentRef;
 const exposedProperties = ['window', 'navigator', 'document'];
 
-const create = (domString) => {
+const create = (domString, options) => {
   actualDOM = domString || '';
-  global.document = jsdom(actualDOM);
+  global.document = jsdom(actualDOM, options);
   global.window = global.document.defaultView;
   Object.keys(global.document.defaultView).forEach((property) => {
     if (typeof global[property] === 'undefined') {
